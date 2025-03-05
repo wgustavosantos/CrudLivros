@@ -1,0 +1,36 @@
+# Rider
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+.idea_modules/
+
+# Rider / JetBrains logs
+/.idea/
+/.idea/workspace.xml
+.idea/inspectionProfiles/
+.idea/modules.xml
+.idea/shelf/
+.idea/httpRequests/
+.idea/dictionaries/
+
+# .NET Core / .NET 5/6/7/8+
+*/bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.dotSettings
+*.vs/
+.vscode/
+
+# Build results
+out/
+*.exe
+*.dll
+*.pdb
+*.nuget/
+*.nupkg
+
+
