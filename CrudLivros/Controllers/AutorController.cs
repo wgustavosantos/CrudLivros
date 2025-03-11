@@ -37,10 +37,24 @@ public class AutorController : ControllerBase
         return Ok(autores);
     }
 
-    [HttpPost]
+    [HttpPost("InserirAutor")]
     public async Task<IActionResult> Post([FromBody] AutorInputDto autor)
     {
         var autorCriado = await _autorInterface.CriarAutor(autor);
         return Ok(autorCriado);
+    }
+
+    [HttpPut("AtualizarAutor/{idAutor}")]
+    public async Task<IActionResult> Put(int idAutor, [FromBody] AutorInputDto autor)
+    {
+        var atualizarAutor = await _autorInterface.AtualizarAutor(idAutor, autor);
+        return Ok(atualizarAutor);
+    }
+
+    [HttpDelete("DeletarAutor/{idAutor}")]
+    public async Task<IActionResult> Delete(int idAutor)
+    {
+        var deletarAutor = await _autorInterface.DeletarAutor(idAutor);
+        return Ok(deletarAutor);
     }
 }

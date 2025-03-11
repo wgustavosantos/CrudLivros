@@ -9,4 +9,6 @@ public interface IAutorInterface
     Task<ResponseModel<AutorModel>> BuscarAutorPorId(int idAutor);
     Task<ResponseModel<AutorModel>> BuscarAutorPorIdLivro(int idLivro);
     Task<ResponseModel<AutorModel>> CriarAutor(AutorInputDto autor);
+    Task<ResponseModel<AutorModel>> AtualizarAutor(int idAutor, AutorInputDto autor);
+    Task<ResponseModel<AutorModel>> DeletarAutor(int idAutor);
 }

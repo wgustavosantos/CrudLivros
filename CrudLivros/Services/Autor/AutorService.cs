@@ -97,7 +97,66 @@ public class AutorService : IAutorInterface
              _context.Autor.Add(autor);
             await _context.SaveChangesAsync();
             resposta.Dados = autor;
-            
+            resposta.Mensagem = "Autor criado com sucesso!";
+            return resposta;
+        }
+        catch (Exception e)
+        {
+            resposta.Mensagem = e.Message;
+            resposta.Status = false;
+            return resposta;
+        }
+    }
+
+    public async Task<ResponseModel<AutorModel>> AtualizarAutor(int idAutor, AutorInputDto autor)
+    {
+       var resposta = new ResponseModel<AutorModel>();
+
+       try
+       {
+           var autorDb = await _context.Autor.FirstOrDefaultAsync(a => a.Id == idAutor);
+
+           if (autorDb is null)
+           {
+               resposta.Status = false;
+               resposta.Mensagem = "Autor não foi encontrado!";
+               return resposta;
+           }
+           
+           autorDb.Nome = autor.Nome;
+           autorDb.Sobrenome = autor.Sobrenome;
+           _context.Autor.Update(autorDb);
+           await _context.SaveChangesAsync();
+           
+           resposta.Dados = autorDb;
+           resposta.Mensagem = "Autor atualizado!";
+           return resposta;
+       }
+       catch (Exception e)
+       {
+           resposta.Mensagem = e.Message;
+           resposta.Status = false;
+           return resposta;
+       }
+    }
+
+    public async Task<ResponseModel<AutorModel>> DeletarAutor(int idAutor)
+    {
+        var resposta = new ResponseModel<AutorModel>();
+
+        try
+        {
+            var autorDb = await _context.Autor.FirstOrDefaultAsync(a => a.Id == idAutor);
+
+            if (autorDb is null)
+            {
+                resposta.Status = false;
+                resposta.Mensagem = "Nenhum autor cadastrado!";
+                return resposta;
+            }
+            _context.Autor.Remove(autorDb);
+            await _context.SaveChangesAsync();
+            resposta.Mensagem = "Autor deletado!";
             return resposta;
         }
         catch (Exception e)
