@@ -16,7 +16,8 @@ public class Program
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
-
+        
+        //Métodos da interface estão implementados em Services
         builder.Services.AddScoped<IAutorInterface, AutorService>();
         
         builder.Services.AddControllers();
